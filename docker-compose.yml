@@ -1,0 +1,14 @@
+services:
+  carbs:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      APP_PASSWORD: ${APP_PASSWORD}          # required if reachable beyond your LAN
+      USDA_API_KEY: ${USDA_API_KEY:-DEMO_KEY}
+      CLAUDE_MODEL: ${CLAUDE_MODEL:-claude-opus-5-5}
+      TZ: ${TZ:-America/New_York}
+    volumes:
+      - ./data:/data                         # on TrueNAS, point this at a dataset path

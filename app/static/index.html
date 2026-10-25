@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f7a4d">
+<title>Carb Tracker</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <button id="prev" aria-label="Previous day">‹</button>
+  <input type="date" id="day">
+  <button id="next" aria-label="Next day">›</button>
+</header>
+
+<main>
+  <section id="tab-today">
+    <div class="totals">
+      <div class="ring"><span id="t-carbs">0</span><small>carbs g</small><div class="bar"><i id="b-carbs"></i></div><em id="g-carbs"></em></div>
+      <div class="ring"><span id="t-fat">0</span><small>fat g</small><div class="bar"><i id="b-fat"></i></div><em id="g-fat"></em></div>
+    </div>
+    <div id="entries"></div>
+  </section>
+
+  <section id="tab-add" hidden>
+    <div class="actions">
+      <label class="btn">📷 Nutrition label<input type="file" accept="image/*" capture="environment" data-photo="label" hidden></label>
+      <label class="btn">🍽️ Photo of meal<input type="file" accept="image/*" capture="environment" data-photo="meal" hidden></label>
+      <button class="btn" id="scan">▮▯▮ Scan barcode</button>
+      <button class="btn" id="manual">✏️ Manual entry</button>
+    </div>
+    <input id="hint" placeholder="Optional hint for photos (e.g. 'about 1 cup', 'cooked in butter')">
+    <form id="search-form"><input id="q" placeholder="Search foods or brands…" autocomplete="off"><button>Search</button></form>
+    <video id="video" playsinline hidden></video>
+    <div id="status" role="status"></div>
+    <div id="drafts"></div>
+    <h3 id="recent-h" hidden>Recent</h3>
+    <div id="recent"></div>
+  </section>
+
+  <section id="tab-history" hidden>
+    <div id="chart"></div>
+    <h3>Daily goals</h3>
+    <form id="goals" class="row">
+      <label>Carbs g <input type="number" min="0" step="1" name="carbs_g"></label>
+      <label>Fat g <input type="number" min="0" step="1" name="fat_g"></label>
+      <button>Save</button>
+    </form>
+  </section>
+</main>
+
+<nav>
+  <button data-tab="today" class="on">Today</button>
+  <button data-tab="add">Add</button>
+  <button data-tab="history">History</button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>
